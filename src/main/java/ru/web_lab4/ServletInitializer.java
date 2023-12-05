@@ -1,4 +1,4 @@
-package com.web.web_lab4_back;
+package ru.web_lab4;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
