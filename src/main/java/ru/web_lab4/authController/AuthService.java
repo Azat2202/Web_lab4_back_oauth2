@@ -24,7 +24,7 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Login is not free");
         }
         if(password.isBlank()){
-            throw  new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Password must be not blank");
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Password must be not blank");
         }
         String salt = this.generateRandomString();
         String cookedPass = PEPPER + password + salt;
@@ -32,7 +32,7 @@ public class AuthService {
         repository.save(user);
     }
 
-    public void checkUser(String authorization){
+    public String checkUser(String authorization){
         if(!authorization.startsWith("Basic")){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Not valid authentication method");
         }
@@ -58,6 +58,7 @@ public class AuthService {
         if(!user.getPassword().equals(this.getHash(cookedPass))){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Password is not valid");
         }
+        return login;
     }
 
     private String generateRandomString() {
