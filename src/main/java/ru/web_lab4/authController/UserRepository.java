@@ -4,5 +4,5 @@ import lombok.NonNull;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<ApplicationUser, Long> {
-    ApplicationUser findByLogin(@NonNull String login);
+    ApplicationUser findApplicationUserByLogin(@NonNull String login);
 }

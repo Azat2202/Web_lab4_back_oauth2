@@ -20,7 +20,7 @@ public class AuthService {
 
     private final UserRepository repository;
     public void registerUser(String login, String password){
-        if(repository.findByLogin(login) != null) {
+        if(repository.findApplicationUserByLogin(login) != null) {
             throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE, "Login is not free");
         }
         if(password.isBlank()){
@@ -49,7 +49,7 @@ public class AuthService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid base64");
         }
 
-        ApplicationUser user = repository.findByLogin(login);
+        ApplicationUser user = repository.findApplicationUserByLogin(login);
         if(user == null){
             throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Login is not valid");
         }
